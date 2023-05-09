@@ -31,6 +31,7 @@ namespace CacheEx.API.Services
 
         public List<PessoaDTO> ReadPessoa()
         {
+            System.Threading.Thread.Sleep(5000);
             var pessoas = _context.Pessoas.ToList();
 
             return _mapper.Map<List<PessoaDTO>>(pessoas);

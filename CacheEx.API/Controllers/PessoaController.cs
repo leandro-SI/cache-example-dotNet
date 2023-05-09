@@ -1,7 +1,9 @@
 ﻿using CacheEx.API.Dtos;
+using CacheEx.API.Dtos.Responses;
 using CacheEx.API.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Data;
 
 namespace CacheEx.API.Controllers
@@ -26,13 +28,16 @@ namespace CacheEx.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetPessoas()
+        public ActionResult<PessoaResponse> GetPessoas()
         {
-            var pessoas = _pessoaService.ReadPessoa();
 
-            if (pessoas == null) return NotFound();
+            var start = DateTime.Now;
+            var response = new PessoaResponse(_pessoaService.ReadPessoa(), start);
 
-            return Ok(pessoas);
+            //var pessoas = _pessoaService.ReadPessoa();
+            //if (pessoas == null) return NotFound();
+
+            return Ok(response);
         }
 
     }
