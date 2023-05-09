@@ -1,7 +1,12 @@
+using CacheEx.API.Context;
+using CacheEx.API.Services;
+using CacheEx.API.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,7 +32,13 @@ namespace CacheEx.API
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddDbContext<CacheContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("CacheConnection")));
+
             services.AddControllers();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddScoped<IPessoaService, PessoaService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CacheEx.API", Version = "v1" });
