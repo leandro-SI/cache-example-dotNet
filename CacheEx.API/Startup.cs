@@ -37,7 +37,11 @@ namespace CacheEx.API
             services.AddControllers();
 
             services.AddMemoryCache();
-            services.AddDistributedMemoryCache();
+            services.AddDistributedRedisCache(options =>
+            {
+                options.Configuration = Configuration.GetConnectionString("RedisConnection");
+                options.InstanceName = "CL007";
+            });
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IPessoaService, PessoaService>();
