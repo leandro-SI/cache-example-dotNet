@@ -40,7 +40,7 @@ namespace CacheEx.API
             services.AddDistributedRedisCache(options =>
             {
                 options.Configuration = Configuration.GetConnectionString("RedisConnection");
-                options.InstanceName = "CL007";
+                options.InstanceName = "CL007:";
             });
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
