@@ -32,7 +32,7 @@ namespace CacheEx.API.Controllers
         {
 
             var start = DateTime.Now;
-            var response = new PessoaResponse(_pessoaService.ReadPessoa(), start);
+            var response = new PessoaResponse(_pessoaService.GetAllPessoas(), start);
 
             //var pessoas = _pessoaService.ReadPessoa();
             //if (pessoas == null) return NotFound();

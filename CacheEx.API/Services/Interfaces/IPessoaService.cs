@@ -6,6 +6,6 @@ namespace CacheEx.API.Services.Interfaces
     public interface IPessoaService
     {
         public PessoaDTO CreatePessoa(PessoaDTO pessoaDto);
-        public List<PessoaDTO> ReadPessoa();
+        public List<PessoaDTO> GetAllPessoas();
     }
 }

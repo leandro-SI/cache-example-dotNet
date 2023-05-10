@@ -36,6 +36,8 @@ namespace CacheEx.API
 
             services.AddControllers();
 
+            services.AddMemoryCache();
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IPessoaService, PessoaService>();
 
