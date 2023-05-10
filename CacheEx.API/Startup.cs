@@ -37,9 +37,11 @@ namespace CacheEx.API
             services.AddControllers();
 
             services.AddMemoryCache();
+            services.AddDistributedMemoryCache();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IPessoaService, PessoaService>();
+            services.AddScoped<IPessoaRedisService, PessoaRedisService>();
 
             services.AddSwaggerGen(c =>
             {
